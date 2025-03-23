@@ -1,0 +1,18 @@
+diff --git a/custom_components/xiaomi_home/miot/miot_client.py b/custom_components/xiaomi_home/miot/miot_client.py
+index 8f89f8d..a3dc20b 100644
+--- a/custom_components/xiaomi_home/miot/miot_client.py
++++ b/custom_components/xiaomi_home/miot/miot_client.py
+@@ -353,6 +353,13 @@ class MIoTClient:
+                 key=f'{self._uid}-{self._cloud_server}', vote=False)
+ 
+         _LOGGER.info('init_async, %s, %s', self._uid, self._cloud_server)
++        asyncio.create_task(self.__refresh_cloud_devices_timer())
++
++    async def __refresh_cloud_devices_timer(self) -> None:
++        while True:
++            _LOGGER.info('>>>>>>refresh_cloud_devices_timer<<<<<<, %s, %s', self._uid, self._cloud_server)
++            await self.__refresh_cloud_devices_async()
++            await asyncio.sleep(10)
+ 
+     async def deinit_async(self) -> None:
+         self._network.unsub_network_status(
