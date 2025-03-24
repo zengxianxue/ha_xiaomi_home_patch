@@ -8,7 +8,9 @@
 - 应用补丁后在HA中执行`homeassistant.reload_config_entry`会有`Session is closed`错误打印，但不影响效果。
 
 **使用补丁**
+
 按`ha_xiaomi_home`安装步骤，在`install.sh`前打补丁
+
 ```shell
 cd config
 git clone https://github.com/XiaoMi/ha_xiaomi_home.git
